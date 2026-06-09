@@ -19,6 +19,7 @@
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#proyecto">Proyecto</a></li>
+        <li><a href="#realidad-aumentada">AR</a></li>
         <li><a href="#planetas">Planetas</a></li>
         <li><a href="#lunas">Lunas</a></li>
       </ul>
@@ -31,7 +32,15 @@
     <div class="hero-content">
       <span class="hero-subtitle">PLATAFORMA ESPACIAL INTERACTIVA</span>
       <h1 class="hero-title">EXPLORA EL SISTEMA SOLAR</h1>
+      <!-- ↓ Solo una vez — se eliminó el párrafo duplicado -->
       <p>Exploración astronómica futurista con integración para experiencias educativas en realidad aumentada.</p>
+      <a
+        href="https://www.spatial.io/s/vain_spoonbill998s-Digital-World-6a1e00233c0b8ab8bd5348af"
+        target="_blank"
+        class="visual-button"
+      >
+        Enlace Entorno Visual
+      </a>
     </div>
   </section>
 
@@ -62,6 +71,58 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════
+       SECCIÓN REALIDAD AUMENTADA (criterio evaluación)
+       Explica la importancia y utilidad de la RA.
+  ═══════════════════════════════════════════════ -->
+  <section class="ar-section" id="realidad-aumentada">
+    <div class="section-title">
+      <span>TECNOLOGÍA AR</span>
+      <h2>Realidad Aumentada</h2>
+      <p>Por qué la RA transforma la exploración espacial educativa en COSMORA.</p>
+    </div>
+    <div class="ar-benefits-grid">
+
+      <div class="ar-benefit-card">
+        <div class="ar-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12d6c5" stroke-width="1.6">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Visualización Inmersiva</h3>
+        <p>Proyecta planetas y lunas en escala real sobre tu entorno físico, logrando
+           una comprensión espacial imposible con imágenes planas o videos convencionales.</p>
+      </div>
+
+      <div class="ar-benefit-card">
+        <div class="ar-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12d6c5" stroke-width="1.6">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h3>Modelos 3D Interactivos</h3>
+        <p>Rota, amplía y examina cada cuerpo celeste desde cualquier ángulo mediante
+           el entorno virtual en Spatial, convirtiendo el estudio en exploración activa.</p>
+      </div>
+
+      <div class="ar-benefit-card">
+        <div class="ar-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12d6c5" stroke-width="1.6">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>Tarjetas Escaneables</h3>
+        <p>Con una tarjeta AR física, cualquier dispositivo se convierte en portal al
+           sistema solar sin necesidad de hardware especializado ni instalaciones complejas.</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- SISTEMA SOLAR -->
   <section class="solar-section">
     <div class="solar-title">
@@ -89,42 +150,82 @@
     <div class="card-grid" id="moonGrid"></div>
   </section>
 
-  <!-- MODAL -->
+  <!-- ═══════════════════════════════════
+       MODAL (información + tarjeta AR)
+  ═══════════════════════════════════ -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
+
+      <!-- Botón cerrar — se reposiciona con CSS cuando AR está activo -->
       <button class="close-btn" id="closeModal">✕</button>
-      <div class="modal-hero-image">
-        <img id="modalImage" src="" alt="">
-        <div class="modal-hero-gradient"></div>
-        <div class="modal-hero-tag" id="modalCategory"></div>
-        <h2 class="modal-hero-title" id="modalTitle"></h2>
-      </div>
-      <div class="modal-body">
-        <div class="modal-stats" id="modalStats"></div>
-        <p class="modal-description" id="modalDescription"></p>
-        <div class="modal-sections">
-          <div class="modal-info-block">
-            <h4>Curiosidades</h4>
-            <p id="modalCuriosity"></p>
+
+      <!-- ── VISTA INFORMACIÓN (por defecto) ── -->
+      <div id="modalInfoView">
+        <div class="modal-hero-image">
+          <img id="modalImage" src="" alt="">
+          <div class="modal-hero-gradient"></div>
+          <div class="modal-hero-tag" id="modalCategory"></div>
+          <h2 class="modal-hero-title" id="modalTitle"></h2>
+        </div>
+        <div class="modal-body">
+          <div class="modal-stats" id="modalStats"></div>
+          <p class="modal-description" id="modalDescription"></p>
+          <div class="modal-sections">
+            <div class="modal-info-block">
+              <h4>Curiosidades</h4>
+              <p id="modalCuriosity"></p>
+            </div>
+            <div class="modal-info-block">
+              <h4>Historia</h4>
+              <p id="modalHistory"></p>
+            </div>
           </div>
-          <div class="modal-info-block">
-            <h4>Historia</h4>
-            <p id="modalHistory"></p>
+          <!-- Solo botón Tarjeta AR — se eliminó "Ver en Realidad Aumentada" -->
+          <div class="modal-actions">
+            <button class="ar-card-main-btn" id="arCardBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+              Tarjeta AR
+            </button>
           </div>
         </div>
-        <div class="modal-actions">
-          <button class="ar-button">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            Ver en Realidad Aumentada
-          </button>
-          <button class="ar-button-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            Tarjeta AR
-          </button>
+      </div><!-- /modalInfoView -->
+
+      <!-- ── PANEL TARJETA AR ── -->
+      <!--
+        ESTRUCTURA DEL PANEL AR:
+        - El canvas ejecuta la animación de viaje estelar al hacer clic en "Tarjeta AR"
+        - arCardImg muestra la tarjeta (placeholder blanco por ahora)
+        - El botón "Volver" regresa a la vista de información
+        - El botón ✕ (closeModal) se mueve al pie con CSS .modal.ar-mode
+      -->
+      <div class="ar-card-panel" id="arCardPanel">
+        <!-- Canvas para animación warp — se oculta al terminar -->
+        <canvas class="ar-warp-canvas" id="arWarpCanvas"></canvas>
+
+        <!-- Imagen de la tarjeta AR -->
+        <!--
+          ┌─────────────────────────────────────────────────────────┐
+          │  CAMBIAR IMAGEN AR:                                     │
+          │  El src de esta imagen se actualiza desde app.js        │
+          │  mediante item.arCard definido en el array de datos.    │
+          │  Ver sección "GUÍA TARJETAS AR" en app.js               │
+          └─────────────────────────────────────────────────────────┘
+        -->
+        <div class="ar-card-display" id="arCardDisplay">
+          <img id="arCardImg" src="ar_cards/placeholder.jpg" alt="Tarjeta AR">
         </div>
-      </div>
-    </div>
-  </div>
+
+        <!-- Footer del panel AR -->
+        <div class="ar-card-footer">
+          <button class="ar-back-btn" id="arBackBtn">← Volver a información</button>
+        </div>
+      </div><!-- /arCardPanel -->
+
+    </div><!-- /modal -->
+  </div><!-- /modal-overlay -->
 
   <!-- FOOTER -->
   <footer class="footer">
