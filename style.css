@@ -55,7 +55,11 @@ body{
   color:#12d6c5;
 }
 
-/* ── HERO ── */
+/* ── HERO ──
+   Fondo cambiado a foto real del Sol (NASA SDO, EUV light)
+   fondo oscuro (espacio negro) con el Sol visible a la derecha.
+   URL de descarga: https://upload.wikimedia.org/wikipedia/commons/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg
+*/
 .hero{
   min-height:100vh;
   position:relative;
@@ -63,7 +67,7 @@ body{
   align-items:center;
   padding:0 8%;
   background:
-    url('https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?q=80&w=1800&auto=format&fit=crop')
+    url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg/1280px-The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg")
     center/cover no-repeat;
 }
 
@@ -73,7 +77,7 @@ body{
   background:linear-gradient(
     to right,
     rgba(5,7,13,0.95),
-    rgba(5,7,13,0.45)
+    rgba(5,7,13,0.35)
   );
 }
 
@@ -90,7 +94,6 @@ body{
   font-weight:500;
 }
 
-/* FIXED TITLE — sin quiebres raros */
 .hero-title{
   font-family:'Syne',sans-serif;
   font-size:clamp(2.8rem,6.5vw,6.5rem);
@@ -154,6 +157,58 @@ body{
   color:#12d6c5;
 }
 
+/* ══════════════════════════════════════
+   SECCIÓN REALIDAD AUMENTADA
+══════════════════════════════════════ */
+.ar-section{
+  padding:90px 8%;
+  background:linear-gradient(180deg,#05070d 0%,#080c18 50%,#05070d 100%);
+}
+
+.ar-benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.ar-benefit-card{
+  background:#0d121b;
+  border:1px solid rgba(18,214,197,0.12);
+  border-radius:20px;
+  padding:35px;
+  transition:border-color 0.3s,transform 0.3s;
+}
+
+.ar-benefit-card:hover{
+  border-color:rgba(18,214,197,0.45);
+  transform:translateY(-5px);
+}
+
+.ar-benefit-icon{
+  width:52px;
+  height:52px;
+  background:rgba(18,214,197,0.08);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+  border:1px solid rgba(18,214,197,0.15);
+}
+
+.ar-benefit-card h3{
+  font-size:1.1rem;
+  font-family:'Syne',sans-serif;
+  margin-bottom:12px;
+  color:#fff;
+}
+
+.ar-benefit-card p{
+  color:rgba(255,255,255,0.65);
+  line-height:1.8;
+  font-size:0.93rem;
+}
+
 /* ── SOLAR ── */
 .solar-section{
   position:relative;
@@ -205,7 +260,7 @@ body{
   border-radius:20px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.08);
-  transition:transform 0.4s, border-color 0.4s;
+  transition:transform 0.4s,border-color 0.4s;
   cursor:pointer;
 }
 
@@ -235,12 +290,12 @@ body{
   font-size:0.95rem;
 }
 
-/* ── MODAL OVERLAY — blur suave, sin fondo sólido ── */
+/* ── MODAL OVERLAY ── */
 .modal-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.45);   /* bajado de 0.82 */
-  backdrop-filter:blur(6px);      /* blur moderado */
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);
   display:none;
   justify-content:center;
@@ -253,7 +308,7 @@ body{
   display:flex;
 }
 
-/* ── MODAL — nuevo diseño tipo captura ── */
+/* ── MODAL ── */
 .modal{
   width:min(620px,100%);
   background:#0b0f1a;
@@ -316,7 +371,6 @@ body{
   overflow-x:hidden;
 }
 
-/* scrollbar discreta */
 .modal-body::-webkit-scrollbar{width:4px;}
 .modal-body::-webkit-scrollbar-track{background:transparent;}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(18,214,197,0.3);border-radius:2px;}
@@ -389,56 +443,37 @@ body{
   color:rgba(255,255,255,0.68);
 }
 
-/* botones del modal */
+/* ──────────────────────────────────────
+   BOTÓN TARJETA AR (único botón en modal)
+   Reemplaza el diseño de dos botones previo.
+────────────────────────────────────── */
 .modal-actions{
   display:flex;
-  gap:12px;
 }
 
-.ar-button{
+.ar-card-main-btn{
   flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:8px;
-  padding:13px 18px;
-  border:none;
+  padding:14px 18px;
+  border:1px solid rgba(18,214,197,0.5);
   border-radius:12px;
-  background:#12d6c5;
-  color:#000;
+  background:rgba(18,214,197,0.06);
+  color:rgba(255,255,255,0.9);
   font-weight:700;
-  font-size:0.85rem;
+  font-size:0.88rem;
   cursor:pointer;
-  transition:transform 0.2s, opacity 0.2s;
+  transition:border-color 0.25s,background 0.25s,color 0.25s,transform 0.2s;
   font-family:'DM Sans',sans-serif;
 }
 
-.ar-button:hover{
-  transform:translateY(-2px);
-  opacity:0.9;
-}
-
-.ar-button-secondary{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:13px 18px;
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:12px;
-  background:transparent;
-  color:rgba(255,255,255,0.8);
-  font-weight:600;
-  font-size:0.85rem;
-  cursor:pointer;
-  transition:border-color 0.2s, color 0.2s;
-  font-family:'DM Sans',sans-serif;
-  white-space:nowrap;
-}
-
-.ar-button-secondary:hover{
+.ar-card-main-btn:hover{
   border-color:#12d6c5;
+  background:rgba(18,214,197,0.14);
   color:#12d6c5;
+  transform:translateY(-2px);
 }
 
 /* close */
@@ -458,11 +493,136 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:background 0.2s;
+  transition:background 0.2s,bottom 0.3s,top 0.3s,right 0.3s;
 }
 
 .close-btn:hover{
   background:rgba(18,214,197,0.2);
+}
+
+/*
+  Cuando el panel AR está activo, el botón ✕ se
+  mueve abajo-derecha para no tapar la tarjeta.
+*/
+.modal.ar-mode .close-btn{
+  top:auto;
+  bottom:16px;
+  right:16px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+.modal.ar-mode .close-btn:hover{
+  background:rgba(18,214,197,0.2);
+  border-color:#12d6c5;
+}
+
+/* ══════════════════════════════════════════════
+   PANEL TARJETA AR
+   Ocupa exactamente las mismas dimensiones que
+   el modal (reemplaza visualmente la vista info).
+══════════════════════════════════════════════ */
+.ar-card-panel{
+  display:none;
+  position:relative;
+  flex-direction:column;
+  width:100%;
+  min-height:560px;
+  background:#000;
+  overflow:hidden;
+}
+
+.ar-card-panel.active{
+  display:flex;
+}
+
+/* Canvas de animación warp — cubre todo el panel durante la transición */
+.ar-warp-canvas{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:none;
+}
+
+/* Contenedor de la imagen de la tarjeta */
+.ar-card-display{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px 28px 10px;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+
+.ar-card-display.visible{
+  opacity:1;
+}
+
+.ar-card-display img{
+  max-height:430px;
+  max-width:100%;
+  border-radius:14px;
+  /*
+    Sombra con resplandor cian temático del sitio
+    para que la tarjeta "brille" al aparecer.
+  */
+  box-shadow:
+    0 0 0 1px rgba(18,214,197,0.15),
+    0 0 30px rgba(18,214,197,0.2),
+    0 20px 60px rgba(0,0,0,0.8);
+  animation:cardFloat 4s ease-in-out infinite;
+}
+
+/* Leve flotación de la tarjeta una vez visible */
+@keyframes cardFloat{
+  0%,100%{ transform:translateY(0); }
+  50%     { transform:translateY(-8px); }
+}
+
+/* Footer del panel AR — botón volver + X cerrar */
+.ar-card-footer{
+  padding:14px 22px 18px;
+  display:flex;
+  align-items:center;
+  background:rgba(0,0,0,0.5);
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+
+.ar-back-btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.18);
+  color:rgba(255,255,255,0.75);
+  padding:9px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.83rem;
+  font-weight:500;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+}
+
+.ar-back-btn:hover{
+  border-color:#12d6c5;
+  color:#12d6c5;
+  background:rgba(18,214,197,0.06);
+}
+
+/* ── HERO BUTTON ── */
+.visual-button{
+  display:inline-block;
+  margin-top:35px;
+  padding:14px 26px;
+  background:#ffffff;
+  color:#05070d;
+  text-decoration:none;
+  border-radius:14px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.visual-button:hover{
+  transform:translateY(-4px);
 }
 
 /* ── FOOTER ── */
@@ -528,21 +688,13 @@ body{
   margin-bottom:5px;
 }
 
-.footer-stack{
-  font-size:0.75rem;
-  color:rgba(18,214,197,0.5);
-  letter-spacing:0.1em;
-}
-
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .nav-links{display:none;}
-
   .modal-stats{grid-template-columns:repeat(2,1fr);}
   .modal-sections{grid-template-columns:1fr;}
   .modal-body{padding:22px 18px 24px;}
-  .modal-actions{flex-direction:column;}
-  .ar-button-secondary{justify-content:center;}
+  .ar-card-display{padding:20px 16px 8px;}
 }
 
 @media(max-width:600px){
